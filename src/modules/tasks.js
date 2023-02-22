@@ -1,4 +1,13 @@
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+import { setTaskAsComplete, setTaskAsIncomplete } from './taskCompleted.js';
+
+let tasks;
+
+const getTasks = () => tasks;
+
+// function to set tasks to an array
+const setTasks = (newTasks) => {
+  tasks = newTasks;
+};
 
 const updateLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -39,8 +48,14 @@ const resetTaskList = () => {
     const taskDescription = document.createElement('span');
     taskDescription.innerText = tasks[index].description;
     taskDescription.classList.add('task-description');
+    if (tasks[index].completed) {
+      taskDescription.style.textDecoration = 'line-through';
+      taskDescription.style.color = '#a0a0a0';
+    }
 
     const checkBox = listItem.children[0];
+    checkBox.classList.remove('checkbox-focused');
+
     const icon = listItem.children[2];
     icon.innerText = 'more_vert'; // Icon
 
@@ -56,14 +71,33 @@ const showTasks = () => {
     const listItem = document.createElement('li');
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
+    checkBox.checked = task.completed;
 
     const taskDescription = document.createElement('span');
     taskDescription.innerText = task.description;
     taskDescription.classList.add('task-description');
+    if (task.completed) {
+      taskDescription.style.textDecoration = 'line-through';
+      taskDescription.style.color = '#a0a0a0';
+      checkBox.checked = true;
+    }
 
     const handle = document.createElement('span');
     handle.classList.add('material-symbols-outlined', 'md-20');
     handle.innerText = 'more_vert';
+
+    checkBox.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        taskDescription.style.textDecoration = 'line-through';
+        taskDescription.style.color = '#a0a0a0';
+        setTaskAsComplete(task);
+      } else {
+        taskDescription.style.textDecoration = '';
+        taskDescription.style.color = '';
+        setTaskAsIncomplete(task);
+      }
+      updateLocalStorage();
+    });
 
     handle.addEventListener('click', () => {
       if (handle.innerText === 'delete') {
@@ -80,6 +114,9 @@ const showTasks = () => {
       editTaskInput.value = task.description;
       editTaskInput.style.backgroundColor = '#feffdc';
       editTaskInput.classList.add('edit-task-input');
+
+      // change checkbox BG color when edit task input is focused
+      checkBox.classList.add('checkbox-focused');
 
       editTaskInput.addEventListener('keyup', (e) => {
         if (e.key === 'Enter' && editTaskInput.value.trim().length > 0) {
@@ -111,6 +148,9 @@ const showTasks = () => {
 };
 
 export {
+  getTasks,
+  setTasks,
   addNewTask,
   showTasks,
+  updateLocalStorage,
 };

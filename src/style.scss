@@ -48,6 +48,10 @@ body {
     color: gray;
     cursor: pointer;
     font-size: 15px;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   ul {
@@ -62,8 +66,45 @@ body {
       font-size: 15px;
 
       input[type="checkbox"] {
-        height: 16px;
-        width: 16px;
+        height: 18px;
+        width: 18px;
+        position: relative;
+
+        &:checked {
+          // create custom checkbox
+          // background
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            height: 18px;
+            width: 18px;
+            background-color: white;
+            z-index: 1;
+          }
+
+          // tick
+          &::before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 0;
+            display: block;
+            height: 7px;
+            width: 14px;
+            border-bottom: 3px solid;
+            border-left: 3px solid;
+            border-color: rgb(45, 125, 223);
+            transform: rotate(-45deg);
+            z-index: 2;
+          }
+        }
+
+        &.checkbox-focused::after {
+          background-color: #feffdc;
+        }
       }
 
       .task-description {
