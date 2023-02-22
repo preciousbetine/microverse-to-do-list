@@ -2,7 +2,7 @@ let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 const updateLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+};
 
 const addNewTask = (input) => {
   if (input.value.trim().length === 0) return;
@@ -13,8 +13,7 @@ const addNewTask = (input) => {
   });
   input.value = '';
   updateLocalStorage();
-  showTasks();
-}
+};
 
 const removeTask = (index) => {
   tasks = tasks.filter((task) => task.index !== index);
@@ -25,7 +24,6 @@ const removeTask = (index) => {
   });
 
   updateLocalStorage();
-  showTasks();
 };
 
 const updateTask = (task) => {
@@ -49,7 +47,7 @@ const resetTaskList = () => {
     listItem.innerHTML = '';
     listItem.append(checkBox, taskDescription, icon);
   });
-}
+};
 
 const showTasks = () => {
   const todoList = document.querySelector('#todo-list');
@@ -70,6 +68,7 @@ const showTasks = () => {
     handle.addEventListener('click', () => {
       if (handle.innerText === 'delete') {
         removeTask(task.index);
+        showTasks();
         return;
       }
 
@@ -109,7 +108,7 @@ const showTasks = () => {
     listItem.append(checkBox, taskDescription, handle);
     todoList.appendChild(listItem);
   });
-}
+};
 
 export {
   addNewTask,
