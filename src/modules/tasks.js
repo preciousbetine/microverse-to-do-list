@@ -1,6 +1,11 @@
 import { setTaskAsComplete, setTaskAsIncomplete } from "./taskCompleted";
 
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks;
+
+// function to set tasks to an array
+const setTasks = (newTasks) => {
+  tasks = newTasks;
+}
 
 const updateLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -47,6 +52,8 @@ const resetTaskList = () => {
     }
 
     const checkBox = listItem.children[0];
+    checkBox.classList.remove('checkbox-focused');
+
     const icon = listItem.children[2];
     icon.innerText = 'more_vert'; // Icon
 
@@ -106,6 +113,9 @@ const showTasks = () => {
       editTaskInput.style.backgroundColor = '#feffdc';
       editTaskInput.classList.add('edit-task-input');
 
+      // change checkbox BG color when edit task input is focused
+      checkBox.classList.add('checkbox-focused');
+
       editTaskInput.addEventListener('keyup', (e) => {
         if (e.key === 'Enter' && editTaskInput.value.trim().length > 0) {
           updateTask({
@@ -137,6 +147,7 @@ const showTasks = () => {
 
 export {
   tasks,
+  setTasks,
   addNewTask,
   showTasks,
   updateLocalStorage,

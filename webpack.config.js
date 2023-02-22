@@ -43,13 +43,13 @@ const config = {
   entry: entryPath,
   output: outputConfig,
   plugins: [htmlPlugin],
-  mode: 'production',
-  // mode: 'development',
+  // mode: 'production',
+  mode: 'development',
   module: {
     rules: [cssRules, scssRules, imageRules, fontRules],
   },
   devServer: devServerConfig,
-  // devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
   optimization,
 };
 

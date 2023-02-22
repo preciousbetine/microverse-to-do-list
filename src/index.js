@@ -1,6 +1,7 @@
 import './style.scss';
 import {
   addNewTask,
+  setTasks,
   showTasks,
   tasks,
   updateLocalStorage,
@@ -24,9 +25,10 @@ addTaskButton.addEventListener('click', () => {
 });
 
 clearCompletedTasksButton.addEventListener('click', () => {
-  tasks = clearAllCompletedTasks(tasks);
+  setTasks(clearAllCompletedTasks(tasks));
   updateLocalStorage();
   showTasks();
 });
 
+setTasks(JSON.parse(localStorage.getItem('tasks')) || []);
 showTasks();
