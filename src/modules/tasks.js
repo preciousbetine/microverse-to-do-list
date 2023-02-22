@@ -1,3 +1,5 @@
+import { setTaskAsComplete, setTaskAsIncomplete } from "./taskCompleted";
+
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 const updateLocalStorage = () => {
@@ -39,6 +41,10 @@ const resetTaskList = () => {
     const taskDescription = document.createElement('span');
     taskDescription.innerText = tasks[index].description;
     taskDescription.classList.add('task-description');
+    if (tasks[index].completed) {
+      taskDescription.style.textDecoration = 'line-through';
+      taskDescription.style.color = '#a0a0a0';
+    }
 
     const checkBox = listItem.children[0];
     const icon = listItem.children[2];
@@ -56,14 +62,33 @@ const showTasks = () => {
     const listItem = document.createElement('li');
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
+    checkBox.checked = task.completed;
 
     const taskDescription = document.createElement('span');
     taskDescription.innerText = task.description;
     taskDescription.classList.add('task-description');
+    if (task.completed) {
+      taskDescription.style.textDecoration = 'line-through';
+      taskDescription.style.color = '#a0a0a0';
+      checkBox.checked = true;
+    }
 
     const handle = document.createElement('span');
     handle.classList.add('material-symbols-outlined', 'md-20');
     handle.innerText = 'more_vert';
+
+    checkBox.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        taskDescription.style.textDecoration = 'line-through';
+        taskDescription.style.color = '#a0a0a0';
+        setTaskAsComplete(task);
+      } else {
+        taskDescription.style.textDecoration = '';
+        taskDescription.style.color = '';
+        setTaskAsIncomplete(task);
+      }
+      updateLocalStorage();
+    });
 
     handle.addEventListener('click', () => {
       if (handle.innerText === 'delete') {
@@ -111,6 +136,8 @@ const showTasks = () => {
 };
 
 export {
+  tasks,
   addNewTask,
   showTasks,
+  updateLocalStorage,
 };
