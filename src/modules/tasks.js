@@ -1,11 +1,13 @@
-import { setTaskAsComplete, setTaskAsIncomplete } from "./taskCompleted";
+import { setTaskAsComplete, setTaskAsIncomplete } from './taskCompleted.js';
 
 let tasks;
+
+const getTasks = () => tasks;
 
 // function to set tasks to an array
 const setTasks = (newTasks) => {
   tasks = newTasks;
-}
+};
 
 const updateLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -146,7 +148,7 @@ const showTasks = () => {
 };
 
 export {
-  tasks,
+  getTasks,
   setTasks,
   addNewTask,
   showTasks,

@@ -3,10 +3,10 @@ import {
   addNewTask,
   setTasks,
   showTasks,
-  tasks,
+  getTasks,
   updateLocalStorage,
-} from './modules/tasks';
-import { clearAllCompletedTasks } from './modules/taskCompleted';
+} from './modules/tasks.js';
+import { clearAllCompletedTasks } from './modules/taskCompleted.js';
 
 const newTaskInput = document.querySelector('#add-to-do > input');
 const addTaskButton = document.querySelector('#add-task-button');
@@ -25,7 +25,7 @@ addTaskButton.addEventListener('click', () => {
 });
 
 clearCompletedTasksButton.addEventListener('click', () => {
-  setTasks(clearAllCompletedTasks(tasks));
+  setTasks(clearAllCompletedTasks(getTasks()));
   updateLocalStorage();
   showTasks();
 });

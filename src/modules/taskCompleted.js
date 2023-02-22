@@ -1,4 +1,3 @@
-
 const setTaskAsComplete = (task) => {
   task.completed = true;
 };
@@ -8,13 +7,13 @@ const setTaskAsIncomplete = (task) => {
 };
 
 const clearAllCompletedTasks = (tasks) => {
-  let newTaskList =  tasks.filter((task) => !task.completed);
+  const newTaskList = tasks.filter((task) => !task.completed);
   // Update remaining task indices
   newTaskList.forEach((task, idx) => {
     task.index = idx + 1;
   });
   return newTaskList;
-}
+};
 
 export {
   setTaskAsComplete,
