@@ -9,7 +9,7 @@ const addNewTask = (input) => {
   tasks.push({
     description: input.value.trim(),
     completed: false,
-    index: tasks.length,
+    index: tasks.length + 1,
   });
   input.value = '';
   updateLocalStorage();
@@ -20,14 +20,14 @@ const removeTask = (index) => {
 
   // Update remaining task indices
   tasks.forEach((task, idx) => {
-    task.index = idx;
+    task.index = idx + 1;
   });
 
   updateLocalStorage();
 };
 
 const updateTask = (task) => {
-  tasks[task.index].description = task.description;
+  tasks[task.index - 1].description = task.description;
   updateLocalStorage();
 };
 
