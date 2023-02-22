@@ -1,20 +1,43 @@
-import _ from "lodash";
 import './style.scss';
-import cuteRabbit from './images/cute_rabbit.png';
 
-function textComponent() {
-  const element = document.createElement('div');
-  element.innerHTML = _.join(['Hello', 'webpack!'], ' ');
-  element.classList.add('hello');
-  return element;
-}
+const tasks = [
+  {
+    description: 'Task 1',
+    completed: false,
+    index: 0,
+  },
+  {
+    description: 'Task 2',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Task 3',
+    completed: false,
+    index: 2,
+  },
+  {
+    description: 'Task 4',
+    completed: false,
+    index: 3,
+  },
+];
 
-function imageComponent() {
-  const element = document.createElement('img');
-  element.src = cuteRabbit;
-  element.classList.add('rabbit');
-  return element;
-}
+const todoList = document.getElementById('todo-list');
 
-document.body.appendChild(textComponent());
-document.body.appendChild(imageComponent());
+tasks.forEach((task) => {
+  const listItem = document.createElement('li');
+  const checkBox = document.createElement('input');
+  checkBox.type = 'checkbox';
+
+  const taskDescription = document.createElement('span');
+  taskDescription.innerText = task.description;
+  taskDescription.classList.add('task-description');
+
+  const handle = document.createElement('span');
+  handle.classList.add('material-symbols-outlined');
+  handle.innerText = 'more_vert';
+
+  listItem.append(checkBox, taskDescription, handle);
+  todoList.appendChild(listItem);
+});
