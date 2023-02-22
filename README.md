@@ -72,6 +72,7 @@ A website for keeping track of todo tasks
 
 - A list of tasks
 - Check boxes to toggle task completion
+- Add, edit and delete tasks functionality
 - Simple UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -183,8 +184,6 @@ Example:
 <!-- > Describe 1 - 3 features you will add to the project. -->
 <!-- None for now 🙂 -->
 
-- [ ] **Add and delete tasks**
-- [ ] **Edit tasks**
 - [ ] **Drag and drop tasks**
   <!-- - [ ] **[new_feature_3]** -->
 
