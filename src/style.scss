@@ -10,7 +10,18 @@
     'FILL' 0.5,
     'wght' 400;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
+
+.material-symbols-outlined.md-18 { font-size: 18px; }
+.material-symbols-outlined.md-20 { font-size: 20px; }
+.material-symbols-outlined.md-24 { font-size: 24px; }
+.material-symbols-outlined.md-36 { font-size: 36px; }
+.material-symbols-outlined.md-48 { font-size: 48px; }
 
 body {
   height: 100vh;
@@ -31,15 +42,12 @@ body {
   display: flex;
   flex-direction: column;
 
-  * {
-    font-size: 15px;
-  }
-
   button {
     padding: 20px;
     border: none;
     color: gray;
     cursor: pointer;
+    font-size: 15px;
   }
 
   ul {
@@ -51,6 +59,7 @@ body {
       display: flex;
       align-items: center;
       gap: 10px;
+      font-size: 15px;
 
       input[type="checkbox"] {
         height: 16px;
@@ -60,6 +69,14 @@ body {
       .task-description {
         flex: 1 1 auto;
         padding: 20px 0;
+      }
+
+      .edit-task-input {
+        flex: 1 1 auto;
+        padding: 20px 0;
+        border: none;
+        outline: none;
+        font-size: 15px;
       }
     }
   }
@@ -71,10 +88,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #f0f0f0;
-
-  * {
-    font-size: 18px;
-  }
+  font-size: 18px;
 }
 
 #add-to-do {
@@ -89,5 +103,6 @@ body {
     outline: none;
     padding: 10px 0;
     flex: 1 1 auto;
+    font-style: italic;
   }
 }
