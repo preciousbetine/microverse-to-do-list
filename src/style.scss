@@ -37,8 +37,9 @@ body {
   height: max-content;
   max-height: 80vh;
   overflow-y: auto;
-  border: 1px solid #c5c4c4;
-  box-shadow: 0 10px 10px 3px #f0f0f0;
+  border: 5px solid #c5c4c4;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px 7px #f0f0f0;
   display: flex;
   flex-direction: column;
 
@@ -56,6 +57,7 @@ body {
 
   ul {
     list-style: none;
+    cursor: move;
 
     li {
       padding: 0 20px;
@@ -105,6 +107,11 @@ body {
         &.checkbox-focused::after {
           background-color: #feffdc;
         }
+      }
+
+      &.dragging {
+        border-top: 2px solid #b9b9b9;
+        border-bottom: 2px solid #b9b9b9;
       }
 
       .task-description {

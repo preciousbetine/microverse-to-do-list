@@ -40,6 +40,20 @@ const updateTask = (task) => {
   updateLocalStorage();
 };
 
+const updateTaskIndices = () => {
+  const taskListItems = document.querySelectorAll('#todo-list > li');
+  const newTasks = [];
+
+  taskListItems.forEach((listItem, index) => {
+    const currentTask = getTasks().find((task) => task.index.toString() === listItem.dataset.index);
+    newTasks.push({ ...currentTask, index: index + 1 });
+    listItem.dataset.index = index + 1;
+  });
+
+  setTasks(newTasks);
+  updateLocalStorage();
+};
+
 const resetTaskList = () => {
   const taskListItems = document.querySelectorAll('#todo-list > li');
   taskListItems.forEach((listItem, index) => {
@@ -69,6 +83,9 @@ const showTasks = () => {
   todoList.innerHTML = '';
   tasks.forEach((task) => {
     const listItem = document.createElement('li');
+    listItem.draggable = true;
+    listItem.dataset.index = task.index;
+
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.checked = task.completed;
@@ -85,6 +102,17 @@ const showTasks = () => {
     const handle = document.createElement('span');
     handle.classList.add('material-symbols-outlined', 'md-20');
     handle.innerText = 'more_vert';
+
+    listItem.addEventListener('dragstart', (e) => {
+      listItem.classList.add('dragging');
+      const img = document.createElement('img');
+      e.dataTransfer.setDragImage(img, 0, 0);
+    });
+
+    listItem.addEventListener('dragend', () => {
+      listItem.classList.remove('dragging');
+      updateTaskIndices();
+    });
 
     checkBox.addEventListener('change', (e) => {
       if (e.target.checked) {
@@ -131,6 +159,7 @@ const showTasks = () => {
           listItem.style.backgroundColor = '';
           listItem.append(checkBox, taskDescription, handle);
           resetTaskList();
+          showTasks();
         }
       });
 
