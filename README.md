@@ -73,6 +73,7 @@ A website for keeping track of todo tasks
 - A list of tasks
 - Check boxes to toggle task completion
 - Add, edit, and delete tasks functionality
+- Re-order list items using drag and drop
 - Clear all completed tasks
 - Simple UI
 
