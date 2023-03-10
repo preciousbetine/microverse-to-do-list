@@ -70,12 +70,11 @@ A website for keeping track of todo tasks
 
 ### Key Features <a name="key-features"></a>
 
-- A list of tasks
-- Check boxes to toggle task completion
+- Task list with checkboxes for completion tracking
 - Add, edit, and delete tasks functionality
-- Re-order list items using drag and drop
-- Clear all completed tasks
-- Simple UI
+- Drag-and-drop reordering of tasks
+- Clear all completed tasks option
+- Simple and intuitive user interface
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -184,7 +183,7 @@ Example:
 ## 🔭 Future Features <a name="future-features"></a>
 
 <!-- > Describe 1 - 3 features you will add to the project. -->
-None for now 🙂
+None for now
 
 <!-- - [ ] **Drag and drop tasks** -->
   <!-- - [ ] **[new_feature_3]** -->
@@ -217,7 +216,7 @@ If you like this project, give it a ⭐
 
 <!-- > Give credit to everyone who inspired your codebase. -->
 
-No acknowledgements 😄
+No acknowledgements
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
